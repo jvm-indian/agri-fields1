@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agri Fields - Future of Farming</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/favicon.ico" />
+    
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Outfit', 'sans-serif'],
+              mono: ['Space Grotesk', 'monospace'],
+            },
+            colors: {
+              field: {
+                100: '#EAE7DC', // White Coffee base
+                900: '#1A1A1A',
+              },
+              accent: {
+                orange: '#E85D04', // BoostedUSA/NatGeo accent
+                green: '#006400', // Deep organic green
+              }
+            },
+            backgroundImage: {
+              'noise': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E\")",
+            },
+            transitionTimingFunction: {
+              'luxury': 'cubic-bezier(0.165, 0.84, 0.44, 1)', // White-Coffee easing
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+      /* Global Reset & Base */
+      :root {
+        --cursor-size: 20px;
+      }
+      
+      html.lenis {
+        height: auto;
+      }
+      
+      .lenis.lenis-smooth {
+        scroll-behavior: auto;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #EAE7DC; /* White Coffee Vibe */
+        overflow-x: hidden;
+        cursor: none; /* Custom Cursor Implementation */
+      }
+      
+      .dark body {
+        background-color: #0c0a09;
+      }
+
+      /* Custom Cursor */
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--cursor-size);
+        height: var(--cursor-size);
+        border: 1px solid #000;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s, height 0.3s, background-color 0.3s;
+        mix-blend-mode: difference;
+      }
+      
+      .dark .custom-cursor {
+        border-color: #fff;
+        background-color: #fff;
+      }
+
+      /* Noise Overlay (Organic Feel) */
+      .noise-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      /* Fluid Typography (Fit-Song style) */
+      .fluid-text {
+        font-size: clamp(3rem, 8vw, 12rem);
+        line-height: 0.85;
+        letter-spacing: -0.04em;
+      }
+
+      /* Hiding scrollbar for cleaner look */
+      ::-webkit-scrollbar { width: 0px; }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "react": "https://esm.sh/react@^19.2.3",
+        "framer-motion": "https://esm.sh/framer-motion@11.15.0",
+        "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+        "firebase/": "https://esm.sh/firebase@^12.7.0/",
+        "recharts": "https://esm.sh/recharts@^3.6.0"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="text-stone-900 dark:text-stone-100 antialiased selection:bg-orange-500 selection:text-white">
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="noise-overlay"></div>
+    <div id="root"></div>
+    
+    <script>
+      // Simple Custom Cursor Logic
+      const cursor = document.getElementById('cursor');
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+      
+      document.addEventListener('mousedown', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
+      });
+      
+      document.addEventListener('mouseup', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
+    </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "Agri Fields",
+  "description": "A multilingual, offline-first AI Gurukul for farmers. Acts as a teacher, protector, and guide using Gemini AI.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
