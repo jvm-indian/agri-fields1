@@ -316,7 +316,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
       - run: npm ci
       - run: npm run build
       # Add your deployment steps here
@@ -326,7 +326,7 @@ jobs:
 
 ### Build Fails:
 - Check that all dependencies are installed: `npm install`
-- Verify Node.js version: `node --version` (should be 18+)
+- Verify Node.js version: `node --version` (should be 20+)
 - Clear cache and rebuild: `rm -rf node_modules package-lock.json && npm install`
 
 ### App Doesn't Load:
