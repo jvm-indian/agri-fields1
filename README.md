@@ -17,7 +17,7 @@ View your app in AI Studio: https://ai.studio/apps/temp/1
 
 ## 🏃 Run Locally
 
-**Prerequisites:** Node.js 18 or higher
+**Prerequisites:** Node.js 20 or higher
 
 1. Install dependencies:
    ```bash

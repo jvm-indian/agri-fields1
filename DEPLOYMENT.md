@@ -7,7 +7,7 @@ This guide provides multiple options for deploying the Agri-Fields application t
 Before deploying, ensure you have:
 - A Gemini API key from [Google AI Studio](https://ai.google.dev/)
 - Firebase project credentials (if using authentication features)
-- Node.js 18 or higher installed locally (for testing)
+- Node.js 20 or higher installed locally (for building/testing)
 
 ## 🌐 Deployment Options
 
@@ -93,14 +93,46 @@ netlify deploy --prod
 
 Deploy as a containerized application on any platform that supports Docker.
 
-#### Build and Run Locally:
+#### Method 1: Simple Docker Build (Recommended)
+
+This method requires building the app locally first:
+
+```bash
+# 1. Build the application locally
+npm run build
+
+# 2. Build the Docker image using the simple Dockerfile
+docker build -f Dockerfile.simple -t agri-fields .
+
+# 3. Run the container
+docker run -p 8080:80 agri-fields
+```
+
+Access the app at `http://localhost:8080`
+
+#### Method 2: Full Docker Build
+
+This builds everything inside Docker (note: requires Node 20+):
 
 ```bash
 # Build the Docker image
 docker build -t agri-fields .
 
-# Run the container
+# Run the container with environment variable
 docker run -p 8080:80 -e GEMINI_API_KEY=your_api_key_here agri-fields
+```
+
+#### Using Docker Compose:
+
+```bash
+# Create a .env file with your API key
+echo "GEMINI_API_KEY=your_api_key_here" > .env
+
+# Build locally first
+npm run build
+
+# Start with docker-compose
+docker-compose up -d
 ```
 
 Access the app at `http://localhost:8080`
