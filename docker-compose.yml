@@ -8,6 +8,8 @@ services:
     ports:
       - "8080:80"
     environment:
+      # For development/testing only. In production, use Docker secrets or 
+      # external secret management (e.g., AWS Secrets Manager, HashiCorp Vault)
       - GEMINI_API_KEY=${GEMINI_API_KEY}
     restart: unless-stopped
     container_name: agri-fields-app

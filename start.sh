@@ -1,4 +1,5 @@
 #!/bin/bash
+# Make this file executable: chmod +x start.sh
 
 # Agri-Fields Quick Start Script
 
