@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  agri-fields:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      # For development/testing only. In production, use Docker secrets or 
+      # external secret management (e.g., AWS Secrets Manager, HashiCorp Vault)
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    restart: unless-stopped
+    container_name: agri-fields-app
+
+  # Optional: Add a reverse proxy with SSL
+  # nginx-proxy:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+  #     - ./ssl:/etc/nginx/ssl:ro
+  #   depends_on:
+  #     - agri-fields
